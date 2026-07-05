@@ -14,7 +14,7 @@ model has been or may be invoked** until the scheduled start of model runs (see 
 | `src/run_conversations.py` | The runner. Defines the `LLMInterface` protocol, resume-safe JSONL output per `(model, condition)` under `results/raw/`, and a config sidecar (temperature 0.7, 2 seeds, benchmark file fingerprints). Its CLI is inert: no flag constructs a real backend. |
 | `src/backends.py` | The two real backends (`LlamaCppServerLLM`, `OpenAICompatLLM`), **double-gated and never invoked here**, see the embargo section. Tested exclusively through an injected fake transport. |
 | `src/scoring.py` | Per-turn deterministic resource detection (`resource_scorer.provided_resource`), Track-C false-alarm bookkeeping, `None` judge placeholders, and tidy per-conversation outcome rows → CSV. |
-| `src/analysis.py` | The pre-registered confirmatory tests (PRE_REGISTRATION.md §5–6): H1 dose-response, H2 failure rate + CI, H3 cohort gap, H4a/H4b trajectory contrasts. Validated end-to-end on synthetic fixtures only. |
+| `src/analysis.py` | The pre-registered confirmatory tests (PRE_REGISTRATION.md §5-6): H1 dose-response, H2 failure rate + CI, H3 cohort gap, H4a/H4b trajectory contrasts. Validated end-to-end on synthetic fixtures only. |
 | `tests/` | `pytest` suite driven by a deterministic `MockLLM`, fake HTTP transports, and clearly-labeled SYNTHETIC scored fixtures. |
 
 ## The condition grid (496 conditions)
@@ -26,7 +26,7 @@ count = n_seeds × n_variants × (1 + n_personas × (n_levels − 1))
       = 496
 ```
 
-* **6 personas** (the warmth × authority grid) × **5 persona-bearing levels** (L1–L5) ×
+* **6 personas** (the warmth × authority grid) × **5 persona-bearing levels** (L1-L5) ×
   **8 script variants** × **2 seeds** = 480 persona conditions.
 * The **8 variants** span 3 tracks and a new **escalation-trajectory** factor: Track A (crisis)
   has 4, A1/A2 `baseline-short`, A3 `deep-entrenchment` (many persona-reinforcing turns
@@ -88,7 +88,7 @@ LLM, local or API, may be invoked, and no script/persona content may be sent to 
 until the scheduled start of model runs.** Runs are queued behind a separate pilot gate.
 
 This is not caution for its own sake. The entire design (threshold-surface and no-safety-floor
-claims, H1–H3) rests on a credible **pre-registration committed before any outcomes are
+claims, H1-H3) rests on a credible **pre-registration committed before any outcomes are
 observed** (PRE_REGISTRATION.md §1, §8). Running a model on the scripts before the analysis
 plan is provably frozen would invalidate every threshold claim the project rests on; running
 them before the scheduled run start would introduce outcome data mid-pipeline.
@@ -123,7 +123,7 @@ sidecar, happens only at the scheduled start of model runs.
 
 ## Pre-registered analysis (`src/analysis.py`)
 
-Implements PRE_REGISTRATION.md §5–6 exactly, over the tidy scored CSVs (combined across
+Implements PRE_REGISTRATION.md §5-6 exactly, over the tidy scored CSVs (combined across
 models, plus `model`/`cohort`/`acr` columns):
 
 * **H1**, pooled ACR drop L1→L5 (≥ 15 pp) plus an ordinal-pressure logistic regression
